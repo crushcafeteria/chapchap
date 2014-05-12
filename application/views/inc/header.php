@@ -33,6 +33,9 @@
 
 
     <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+
+    <div class="container">
+
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
@@ -48,27 +51,46 @@
         <div class="collapse navbar-collapse navbar-ex1-collapse">
 
             <ul class="nav navbar-nav">
-                <li><a href="#">Home</a></li>
-                <li><a href="#">About</a></li>
+
+                <?php if(!$this->session->userdata('token')):?>
+
+                    <li><a href="<?=base_url('index')?>">Home</a></li>
+
+                <?php else:?>
+
+                    <li><a href="<?=base_url('book/index')?>">All Books</a></li>
+                    <li><a href="<?=base_url('#')?>">Menu</a></li>
+
+                <?php endif;?>
+                
             </ul>
 
-            <form class="navbar-form navbar-left" role="search">
-                <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Search">
-                </div>
-                <button type="submit" class="btn btn-default">Submit</button>
-            </form>
-
+            
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Accounts <b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#">Create Account</a></li>
-                        <li><a href="#">Login</a></li>
-                    </ul>
+                    <?php if(!$this->session->userdata('token')):?>
+
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Accounts <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="<?=base_url('user/create')?>">Create Account</a></li>
+                            <li><a href="<?=base_url('user/login')?>">Login</a></li>
+                        </ul>
+
+                    <?php else:?>
+
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><?=$this->arena->titleCase($this->session->userdata('names'))?> <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="<?=base_url('user/profile')?>">My Profile</a></li>
+                            <li><a href="<?=base_url('user/logout')?>">Logout</a></li>
+                        </ul>
+                        
+                    <?php endif;?>           
+                        
                 </li>
             </ul>
         </div><!-- /.navbar-collapse -->
+
+        </div>
     </nav>
 
     <style type="text/css">

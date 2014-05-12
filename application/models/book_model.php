@@ -2,15 +2,6 @@
 
 class Book_model extends CI_Model {
 
-	private $db;
-
-	public function __construct()
-	{
-		parent::__construct();
-		
-		$this->db = $this->load->database('docs', true);
-	}
-
 	function getAllBooks(){
 
 		$query = $this->db->get('books');

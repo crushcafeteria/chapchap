@@ -36,16 +36,14 @@ class User extends CI_Controller {
 					'token' => $loginStatus['token'],
 				);
 
-				var_dump($loginStatus);
-				
 				$this->session->set_userdata($userdata);
 
-				// redirect(base_url('index'));
+				redirect(base_url('book/all'));
 			} else {
 				$data['msgBox'] = $this->arena->renderMsgBox('Please enter your correct email and password', 'Access Denied');
 				$this->template->inject('user/login', $data);
 
-				var_dump($loginStatus);
+				// var_dump($loginStatus);
 			}
 		}
 		

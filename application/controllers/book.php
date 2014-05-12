@@ -7,8 +7,13 @@ class Book extends CI_Controller {
 		parent::__construct();
 
 		$this->load->library('form_validation');
-		$this->load->model('docs/book_model');
-		$this->load->model('docs/chapter_model');
+		$this->load->model('book_model');
+		$this->load->model('chapter_model');
+	}
+
+
+	public function index(){
+		$this->all();
 	}
 
 	
@@ -32,8 +37,16 @@ class Book extends CI_Controller {
 				$this->template->inject('docs/book/add', $data);
 			}
 		}
+	}
 
-		
+	/*Shows all books in db*/
+	public function all(){
+
+		$data['title'] = 'My Books';
+		$data['books'] = $this->book_model->getAllBooks();
+
+		$this->template->inject('home/index', $data);
+
 	}
 
 }
