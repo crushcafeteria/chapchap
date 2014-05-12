@@ -10,8 +10,8 @@ class User extends CI_Controller {
 		$this->load->model('user_model');
 	}
 
-	public function login()
-	{
+	public function login()	{
+
 		$data['title'] = 'Login';
 
 		$this->form_validation->set_rules('email', 'email address', 'trim|required|valid_email|xss_clean');
@@ -39,13 +39,23 @@ class User extends CI_Controller {
 				$this->session->set_userdata($userdata);
 
 				redirect(base_url('book/all'));
+
 			} else {
+
 				$data['msgBox'] = $this->arena->renderMsgBox('Please enter your correct email and password', 'Access Denied');
 				$this->template->inject('user/login', $data);
 
-				// var_dump($loginStatus);
 			}
 		}
+		
+	}
+
+	/*Logout user*/
+	public function logout(){
+
+		$this->session->sess_destroy();
+
+		redirect(base_url('user/login?status=logged_out'));
 		
 	}
 
