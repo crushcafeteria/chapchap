@@ -4,7 +4,12 @@
 	<legend>Login to <?=$this->config->item('appName')?></legend>
 
 	<?=@$msgBox?>
-	
+	<?php 
+	if(@$_GET['status']=='logged_out'){
+		$this->arena->msgBox('You are now logged out.','Thanks', 'alert-success');
+	}
+	?>
+
 	<?=form_open(base_url('user/login'))?>
 
 	<?=form_label('Email Address', 'email')?>
