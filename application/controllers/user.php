@@ -59,6 +59,36 @@ class User extends CI_Controller {
 		
 	}
 
+	/*Create new user*/
+	public function create(){
+
+		$data['title'] = 'New User';
+
+		$this->form_validation->set_rules('names', 'full name', 'required|trim|xss_clean');
+		$this->form_validation->set_rules('gender', 'gender', 'required|trim|xss_clean');
+		$this->form_validation->set_rules('email', 'email address', 'required|trim|xss_clean|valid_email|is_unique[users.email]');
+		$this->form_validation->set_rules('password', 'password', 'required|trim|xss_clean');
+		$this->form_validation->set_rules('confirm_password', 'confirm password', 'required|trim|xss_clean|matches[password]');
+
+		$this->form_validation->set_error_delimiters('<div class="form-error text-danger">', '</div>');
+
+
+		if(!$this->form_validation->run()){
+			$this->template->inject('user/create', $data);
+		} else {
+			// Save user
+
+			if($this->user_model->createNewUser($this->input->post())){
+
+				redirect('user/login?status=account_created');
+
+			} else {
+				$data['msgBox'] = $this->arena->msgBox('An error occured while creating your account. Please try again later', 'Database Error');
+				$this->template->inject('user/create', $data);
+			}
+		}
+	}
+
 
 
 }

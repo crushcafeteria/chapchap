@@ -13,6 +13,12 @@ class User_model extends CI_Model {
 		}
 	}
 
+
+	function createNewUser($data){
+		$data['created_on'] = $this->arena->formatDate();
+		return $this->db->insert('users', array('names'=>$this->arena->titleCase($data['names']), 'gender'=>strtoupper($data['gender']), 'email'=>strtolower($data['email']), 'password'=>hash('sha512', $data['password'])));
+	}
+
 	
 
 }

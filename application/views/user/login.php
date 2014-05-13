@@ -7,6 +7,9 @@
 	<?php 
 	if(@$_GET['status']=='logged_out'){
 		$this->arena->msgBox('You are now logged out.','Thanks', 'alert-success');
+
+	} else if(@$_GET['status']=='account_created'){
+		$this->arena->msgBox('You have created a new user account. Please login to continue.','Welcome', 'alert-success');
 	}
 	?>
 
