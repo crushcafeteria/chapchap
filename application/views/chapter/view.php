@@ -1,7 +1,7 @@
 <div class="col-md-9">
 
 	<h3>
-		<?=$book['name']?> 
+		Book: <?=$book['name']?> 
 		<div class="text-muted pull-right">
 			<?=count($chapters)?> chapters
 		</div>
@@ -13,7 +13,12 @@
 		<?=$book['description']?>
 	</small>
 
-	<hr>
+	<br>
+	<br>
+
+	<legend>
+		This book has <?=count($chapters)?> chapter(s)
+	</legend>
 
 	<?php
 	if(@$_GET['status']=='success'){
@@ -32,7 +37,7 @@
 		<div class="list-group">
 			<?php foreach ($chapters as $chapter):?>
 					
-				<a href="<?=base_url('docs/article/view/'.$chapter['id'])?>" class="list-group-item">
+				<a href="<?=base_url('article/view/'.$chapter['id'])?>" class="list-group-item">
 
 					<small class="pull-right text-muted">
 						<?=$this->arena->fbTime($chapter['created_on'])?>
@@ -57,6 +62,6 @@
 
 	<legend>Options</legend>
 	
-	<a href="<?=base_url('docs/chapter/add/'.$book['id'])?>" class="btn btn-default btn-block">Add new Chapter</a>
+	<a href="<?=base_url('chapter/add/'.$book['id'])?>" class="btn btn-default btn-block">Add new Chapter</a>
 
 </div>
