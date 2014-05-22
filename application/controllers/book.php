@@ -49,6 +49,13 @@ class Book extends CI_Controller {
 
 	}
 
+	public function edit($bookID){
+
+		$data['book'] = $this->book_model->findBook($bookID);
+
+		
+	}
+
 }
 
 /* End of file book.php */
