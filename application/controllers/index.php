@@ -11,11 +11,22 @@ class Index extends CI_Controller {
 
 	public function index()
 	{	
-		
-		$data['title'] = 'Welcome';
-		$data['books'] = $this->book_model->getAllBooks();
 
-		$this->template->inject('home/index', $data);
+		if($this->session->userdata('email')){
+
+			// Show all books
+			$data['title'] = 'Welcome';
+			$data['books'] = $this->book_model->getAllBooks();
+
+			$this->template->inject('book/list', $data);
+
+		} else {
+
+			// Show home page
+			$this->template->inject('index');
+		}
+		
+			
 	}
 
 }
