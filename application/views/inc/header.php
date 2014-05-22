@@ -52,14 +52,13 @@
 
             <ul class="nav navbar-nav">
 
-                <?php if(!$this->session->userdata('token')):?>
+                <?php if(!$this->session->userdata('email')):?>
 
                     <li><a href="<?=base_url('index')?>">Home</a></li>
 
                 <?php else:?>
 
-                    <li><a href="<?=base_url('book/index')?>">All Books</a></li>
-                    <li><a href="<?=base_url('#')?>">Menu</a></li>
+                    <li><a href="<?=base_url('index')?>">All Books</a></li>
 
                 <?php endif;?>
                 
@@ -68,7 +67,7 @@
             
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown">
-                    <?php if(!$this->session->userdata('token')):?>
+                    <?php if(!$this->session->userdata('email')):?>
 
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Accounts <b class="caret"></b></a>
                         <ul class="dropdown-menu">
