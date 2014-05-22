@@ -11,5 +11,17 @@ are the topics under each book. Example chapters under Help Content might be Cre
 Under each topic there are articles that are directly related to those chapters. You can create as many books, chapters and articles as you please. Chapchap also sports a JSON API that enables you to load your help content from a remote location. This is especially helpful when 
 combined with AJAX methods or PHP's cURL.
 
-#Roadmap
+#How to get it
+Chapchap is free software for all. Download it [here](https://github.com/crushcafeteria/chapchap/archive/master.zip "Github Repo").
+here, copy it to your server, dump the database and run it. If you have ever had a fling with CodeIgniter, feel free to crack open its innards and extend it as you see fit.
 
+#Roadmap
+* jQuery Plugin - imagine loading remote help on an element on hover or click like this:
+$(element).chapchap({
+trigger: "click",
+permalink: "http://chapchap.co.ke/api/23"
+});
+* PDF Generation - generate PDF of a book, chapter or article on the fly quick, fast and easy
+* Flexible Theming and Printing System - Microsoft Word like themes that can be used to style and print any info in the DB
+* File conversions to popular formats like Word, ODT, txt, richtext, JSON, XML, PHP arrays e.t.c
+* Better documentation - easy better docs (created by Chapchap of kos!)
