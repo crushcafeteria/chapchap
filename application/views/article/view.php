@@ -20,6 +20,8 @@
 	<?php
 	if(@$_GET['status']=='success'){
 		$this->arena->msgBox('A new chapter has been successfully created', 'Success', 'alert-success');
+	} else if(@$_GET['status']=='article_deleted'){
+		$this->arena->msgBox('You have successfully deleted an article', 'Success', 'alert-success');
 	}
 	?>
 	
@@ -34,17 +36,13 @@
 		<div class="list-group">
 			<?php foreach ($articles as $article):?>
 					
-				<a href="<?=base_url('docs/articles/show/'.$article['id'])?>" class="list-group-item">
+				<a href="<?=base_url('article/read/'.$article['id'])?>" class="list-group-item">
 
 					<small class="pull-right text-muted">
 						<?=$this->arena->fbTime($article['created_on'])?>
 					</small>
 
-					<h4 class="text-info" style="border-bottom: 1px solid #f5f5f5;"><?=$article['name']?></h4>
-					
-					<div style="text-align: justify;">
-						<?=$this->arena->sentenceCase($article['description'])?>
-					</div>
+					<h4><?=$article['title']?></h4>
 					
 				</a>
 			<?php endforeach;?>
@@ -59,6 +57,6 @@
 
 	<legend>Options</legend>
 	
-	<a href="<?=base_url('docs/article/write/'.$chapter['id'])?>" class="btn btn-default btn-block">Write new article</a>
+	<a href="<?=base_url('article/write/'.$chapter['id'])?>" class="btn btn-default btn-block">Write new article</a>
 
 </div>
