@@ -12,6 +12,10 @@ class User extends CI_Controller {
 
 	public function login()	{
 
+		if($this->session->userdata('email')){
+			redirect(base_url('index'));
+		}
+
 		$data['title'] = 'Login';
 
 		$this->form_validation->set_rules('email', 'email address', 'trim|required|valid_email|xss_clean');
