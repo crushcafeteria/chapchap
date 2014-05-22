@@ -5,8 +5,8 @@ class Chapter extends CI_Controller {
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->model('docs/book_model');
-		$this->load->model('docs/chapter_model');
+		$this->load->model('book_model');
+		$this->load->model('chapter_model');
 		$this->load->library('form_validation');
 	}
 
@@ -30,15 +30,15 @@ class Chapter extends CI_Controller {
 		$this->form_validation->set_error_delimiters('<div class="form-error text-danger">', '</div>');
 
 		if(!$this->form_validation->run()){
-			$this->template->inject('docs/chapter/add', $data);
+			$this->template->inject('chapter/add', $data);
 		} else {
 
 			// Save chapter
 			if($this->chapter_model->addnewChapter($this->input->post())){
-				redirect('docs/book/view/'.$bookID.'?status=success');
+				redirect('book/view/'.$bookID.'?status=success');
 			} else {
 				$data['msgBox'] = $this->arena->renderMsgBox('Chapter cannot be saved at the moment. Please try again later.','System Error');
-				$this->template->inject('docs/chapter/add', $data);
+				$this->template->inject('chapter/add', $data);
 			}
 		}
 
@@ -53,7 +53,7 @@ class Chapter extends CI_Controller {
 		$data['title'] = $this->arena->titleCase($data['book']['name']);
 		$data['chapters'] = $this->chapter_model->getAllChapters($bookID);
 
-		$this->template->inject('docs/chapter/view', $data);
+		$this->template->inject('chapter/view', $data);
 
 		// var_dump($book);
 		
