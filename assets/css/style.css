@@ -1,0 +1,37 @@
+p{
+	text-align: justify;
+}
+
+
+.panel-title a:hover{
+	text-decoration: underline;
+}
+
+
+.footer{
+    background-color: #f5f5f5;
+    border-radius: 10px 10px 0px 0px;
+    height: 30px;
+    border-top: 1px solid grey;
+    padding-top: 8px;
+    font-size: 11px;
+    margin: 0px 50px 0px 50px;
+}
+
+.footer a{
+    margin-right: 10px;
+    color: grey;
+}
+.footer a:hover{
+    color: #46AEE9;
+}
+
+.lbl{
+    margin-left: 10px;
+    color: grey;
+}
+
+.header {
+    border-radius: 0px 0px 10px 10px;
+    margin: 0px 50px 0px 50px;
+}
