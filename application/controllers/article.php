@@ -20,6 +20,18 @@ class Article extends CI_Controller {
 	/*Add new chapter*/
 	public function write($chapterID){
 
+		$chapter = $this->chapter_model->findChapter($chapterID);
+		$book = $this->book_model->findBook($chapter['book_id']);
+
+		// Breadcrumbs
+		$this->breadcrumb->clear();
+		$this->breadcrumb->add_crumb('Home', base_url());
+		$this->breadcrumb->add_crumb($book['name'], base_url('book/index')); 
+		$this->breadcrumb->add_crumb($chapter['name'], base_url('chapter/view/'.$chapterID)); 
+		$this->breadcrumb->add_crumb('Create Article', '#'); 
+		$data['bread'] = $this->breadcrumb->output();
+
+
 		$data['title'] = 'New Article';
 		$data['chapter'] = $this->chapter_model->findChapter($chapterID);
 
@@ -50,9 +62,18 @@ class Article extends CI_Controller {
 	/*View chapters*/
 	public function view($chapterID){
 
+		$data['book'] = $this->book_model->findBook($chapterID);
 		$data['chapter'] = $this->chapter_model->findChapter($chapterID);
 		$data['title'] = $this->arena->titleCase($data['chapter']['name']);
 		$data['articles'] = $this->article_model->getAllArticles();
+
+		// Breadcrumbs
+		$this->breadcrumb->clear();
+		$this->breadcrumb->add_crumb('Home', base_url());
+		$this->breadcrumb->add_crumb($data['book']['name'], base_url('book/index')); 
+		$this->breadcrumb->add_crumb($data['chapter']['name'], base_url('chapter/view/'.$chapterID)); 
+		$this->breadcrumb->add_crumb('All Articles', '#'); 
+		$data['bread'] = $this->breadcrumb->output();
 
 		$this->template->inject('article/view', $data);
 
@@ -65,7 +86,20 @@ class Article extends CI_Controller {
 	public function read($articleID){
 
 		$data['article'] = $this->article_model->findArticle($articleID);
+		$data['chapter'] = $this->chapter_model->findChapter($data['article']['chapter_id']);
+		$data['book'] = $this->book_model->findBook($data['chapter']['book_id']);
+
 		$data['title'] = $data['article']['title'];
+
+		// Breadcrumbs
+		$this->breadcrumb->clear();
+		$this->breadcrumb->add_crumb('Home', base_url());
+		$this->breadcrumb->add_crumb($data['book']['name'], base_url('book/index')); 
+		$this->breadcrumb->add_crumb($data['chapter']['name'], base_url('chapter/view/'.$data['chapter']['id'])); 
+		$this->breadcrumb->add_crumb($data['article']['title'], base_url('chapter/view/'.$data['chapter']['id'])); 
+		$data['bread'] = $this->breadcrumb->output();
+
+
 
 		$this->template->inject('article/read', $data);
 
@@ -74,6 +108,25 @@ class Article extends CI_Controller {
 
 	/*Edit an article*/
 	public function edit($articleID){
+
+
+		$data['article'] = $this->article_model->findArticle($articleID);
+		$data['chapter'] = $this->chapter_model->findChapter($data['article']['chapter_id']);
+		$data['book'] = $this->book_model->findBook($data['chapter']['book_id']);
+	
+		// Breadcrumbs
+		$this->breadcrumb->clear();
+		$this->breadcrumb->add_crumb('Home', base_url());
+		$this->breadcrumb->add_crumb($data['book']['name'], base_url('book/index')); 
+		$this->breadcrumb->add_crumb($data['chapter']['name'], base_url('chapter/view/'.$data['chapter']['id'])); 
+		$this->breadcrumb->add_crumb($data['article']['title'], base_url('chapter/view/'.$data['chapter']['id'])); 
+		$this->breadcrumb->add_crumb('Edit Article', '#'); 
+
+		$data['bread'] = $this->breadcrumb->output();
+
+
+
+
 
 		$data['title'] = 'Edit Article';
 		$data['article'] = $this->article_model->findArticle($articleID);

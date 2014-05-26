@@ -18,7 +18,7 @@ class User extends CI_Controller {
 
 		$data['title'] = 'Login';
 
-		$this->form_validation->set_rules('email', 'email address', 'trim|required|valid_email|xss_clean');
+		$this->form_validation->set_rules('email', 'email address', 'trim|required|valid_emailxxxxxx|xss_clean');
 		$this->form_validation->set_rules('password', 'password', 'trim|required|xss_clean');
 
 		$this->form_validation->set_error_delimiters('<div class="form-error text-danger">', '</div>');
@@ -70,7 +70,7 @@ class User extends CI_Controller {
 
 		$this->form_validation->set_rules('names', 'full name', 'required|trim|xss_clean');
 		$this->form_validation->set_rules('gender', 'gender', 'required|trim|xss_clean');
-		$this->form_validation->set_rules('email', 'email address', 'required|trim|xss_clean|valid_email|is_unique[users.email]');
+		// $this->form_validation->set_rules('email', 'email address', 'required|trim|xss_clean|valid_email|is_unique[users.email]');
 		$this->form_validation->set_rules('password', 'password', 'required|trim|xss_clean');
 		$this->form_validation->set_rules('confirm_password', 'confirm password', 'required|trim|xss_clean|matches[password]');
 

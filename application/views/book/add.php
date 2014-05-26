@@ -1,7 +1,7 @@
 <div class="col-md-9">
 	<legend>Add new DocBook</legend>
 
-	<?=form_open(base_url('docs/book/add'));?>
+	<?=form_open(base_url('book/add'));?>
 
 	<?=form_label('Book name', 'name');?>
 	<?=form_input(array('name'=>'name', 'class'=>'form-control', 'placeholder'=>'Enter the name of this book...'));?>
@@ -21,5 +21,5 @@
 <div class="col-md-3 pull-right">
 	<legend>Options</legend>
 
-	<a href="<?=base_url('docs/index')?>" class="btn btn-default btn-block">List all books</a>
+	<a href="<?=base_url('book/index')?>" class="btn btn-default btn-block">List all books</a>
 </div>

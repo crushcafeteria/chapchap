@@ -14,11 +14,13 @@ class Index extends CI_Controller {
 
 		if($this->session->userdata('email')){
 
-			// Show all books
-			$data['title'] = 'Welcome';
-			$data['books'] = $this->book_model->getAllBooks();
+			// // Show all books
+			// $data['title'] = 'Welcome';
+			// $data['books'] = $this->book_model->getAllBooks();
 
-			$this->template->inject('book/list', $data);
+			// $this->template->inject('book/list', $data);
+
+			redirect(base_url('book/index'));
 
 		} else {
 

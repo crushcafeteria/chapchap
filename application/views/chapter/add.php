@@ -2,7 +2,7 @@
 
 <div class="col-md-9">
 	
-<?=form_open(base_url('docs/chapter/add/'.$bookID))?>
+<?=form_open(base_url('chapter/add/'.$bookID))?>
 
 <?=form_hidden('bookID', $bookID)?>
 
@@ -24,5 +24,5 @@
 	
 	<legend>Options</legend>
 
-	<a href="<?=base_url('docs/book/view/'.$bookID)?>" class="btn btn-default btn-block">List all chapters</a>
+	<a href="<?=base_url('book/view/'.$bookID)?>" class="btn btn-default btn-block">List all chapters</a>
 </div>

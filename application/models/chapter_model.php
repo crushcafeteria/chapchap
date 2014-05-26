@@ -8,12 +8,20 @@ class Chapter_model extends CI_Model {
 
 	function addnewChapter($data){
 
-		return $this->db->insert('chapters', array('book_id'=>$data['bookID'], 'name'=>$data['name'], 'description'=>$data['description']));
+		return $this->db->insert('chapters', array('book_id'=>$data['bookID'], 'name'=>$data['name'], 'description'=>$data['description'], 'created_on'=>$this->arena->formatDate()));
 
 	}
 
 	function findChapter($chapterID){
 		return $this->db->get_where('chapters', array('id'=>$chapterID))->row_array();
+	}
+
+	function editChapter($data){
+		return $this->db->where('id', $data['chapter_id'])->update('chapters', array('name'=>$data['name'], 'description'=>$data['description'], 'last_update'=>$this->arena->formatDate()));
+	}
+
+	function deleteChapter($chapterID){
+		return $this->db->delete('chapters', array('id'=>$chapterID));
 	}
 
 }

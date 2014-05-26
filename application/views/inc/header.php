@@ -18,6 +18,7 @@
 
     <!-- Add custom CSS here -->
     <link href="<?=base_url('assets/css/landing-page.css')?>" rel="stylesheet">
+    <link href="<?=base_url('assets/css/style.css')?>" rel="stylesheet">
 
     <!-- JavaScript -->
     <script src="<?=base_url('assets/js/jquery-1.10.2.js')?>"></script>
@@ -25,6 +26,9 @@
 
     <!-- CKEditor -->
     <script src="<?=base_url('assets/ckeditor/ckeditor.js')?>"></script>
+
+    <!-- SlimScroll -->
+    <script src="<?=base_url('assets/slimscroll/jquery.slimscroll.min.js')?>"></script>
     
 
 </head>
@@ -44,7 +48,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#"><?=$this->config->item('appName')?></a>
+            <a class="navbar-brand" href="<?=site_url()?>"><?=$this->config->item('appName')?></a>
         </div>
     
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -99,3 +103,6 @@
     </style>
 
     <div class="container">
+
+    <?=@$bread?>
+    

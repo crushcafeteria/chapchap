@@ -1,11 +1,13 @@
 <div class="col-md-9">
-	<legend>Welcome to Arena Docs</legend>
+	<legend>All Books</legend>
 
 	<?php
 
 	if(@$_GET['status']=='success'){
-		$this->arena->msgBox('A new book has been successfully created', 'Success', 'alert-success');
-	}
+		$this->arena->msgBox('Operation has been successfully applied', 'Action Complete!', 'alert-success');
+	} else if(@$_GET['status']=='failed'){
+		$this->arena->msgBox('Operation has failed! Please try again later', 'Operation Failed!', 'alert-danger');
+	} 
 
 	// var_dump($books);
 
@@ -17,28 +19,35 @@
 		</div>
 	<?php else:?>
 
-		<div class="list-group">
 			<?php foreach ($books as $book):?>
-					
-				<a href="<?=base_url('chapter/view/'.$book['id'])?>" class="list-group-item">
 
-					<small class="pull-right text-muted">
-						<?=$this->arena->fbTime($book['created_on'])?>
-					</small>
 
-					<h4 class="text-info" style="border-bottom: 1px solid #f5f5f5;"><?=$book['name']?></h4>
-					<div style="text-align: justify;">
-						<?=$this->arena->sentenceCase($book['description'])?>
+				<div class="col-md-6">
+					<div class="panel panel-default">
+						  <div class="panel-heading">
+								<h3 class="panel-title">
+									<a href="<?=base_url('chapter/view/'.$book['id'])?>"><?=$book['name']?></a>
+								</h3>
+						  </div>
+						  <div class="panel-body book-desc">
+								<p><?=$this->arena->sentenceCase($book['description'])?></p>
+						  </div>
+						  <div class="panel-footer text-muted">
+								<small>
+									<?=$this->arena->fbTime($book['created_on'])?>
+								</small>
+
+								<span class="pull-right">
+									<div class="btn-group">
+										<a href="<?=base_url('book/edit/'.$book['id'])?>" class="btn btn-primary btn-xs">Edit</a>
+										<a href="<?=base_url('book/delete/'.$book['id'])?>" class="btn btn-danger btn-xs">Delete</a>
+									</div>
+								</span>
+						  </div>
 					</div>
+				</div>
 
-					<button type="button" class="btn btn-primary btn-sm">button</button>
-
-					
-
-					
-				</a>
 			<?php endforeach;?>
-		</div>
 
 	<?php endif;?>
 
@@ -50,3 +59,9 @@
 
 	<a href="<?=base_url('book/add')?>" class="btn btn-default btn-block">New Book</a>
 </div>
+
+<script>
+$('.book-desc').slimScroll({
+	height: '150px'
+})
+</script>
