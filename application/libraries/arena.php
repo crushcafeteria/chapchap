@@ -85,6 +85,30 @@ class Arena
 				</div>';
 	}
 
+	public function renderMiniBox($msg, $class='alert-error',$close=true){
+
+		/*IMAGE HACK*/
+		if($class=='alert-error' || $class=='alert-danger'){
+			$icon = 'icon-remove-sign';
+		} else if($class=='alert-info') {
+			$icon = 'icon-info-sign';
+		} else if($class=='alert-success') {
+			$icon = 'icon-ok-sign';
+		} else if($class=='alert-warning') {
+			$icon = 'icon-exclamation-sign';
+		}
+		
+		$html = '<div class="alert '.$class.' text-center">';
+			if($close=='TRUE'){
+				$html .= '<button type="button" class="close" data-dismiss="alert">&times;</button>';
+			}
+		$html .= '<strong><i class="'.$icon.'"></i></strong>
+				'.$msg.'
+				</div>';
+
+		return $html;
+	}
+
 	/*
 	* Seeds a number of specified length.
 	* CONFIG NOTES

@@ -5,8 +5,10 @@ class Chapter extends CI_Controller {
 	public function __construct()
 	{
 		parent::__construct();
+		lockdown();
 		$this->load->model('book_model');
 		$this->load->model('chapter_model');
+		$this->load->model('article_model');
 		$this->load->library('form_validation');
 
 		$this->form_validation->set_error_delimiters('<div class="form-error text-danger">', '</div>');
@@ -61,12 +63,20 @@ class Chapter extends CI_Controller {
 		$data['book'] = $this->book_model->findBook($bookID);
 		$data['title'] = $this->arena->titleCase($data['book']['name']);
 		$data['chapters'] = $this->chapter_model->getAllChapters($bookID);
+		$data['stats'] = $this->chapter_model->summary($bookID);
+
+		foreach ($data['chapters'] as $key => $chapter) {
+			/*Get articles for each chapter*/
+			$data['chapters'][$key]['articles'] = $this->article_model->getChapterArticles($chapter['id']);
+		}
+
+		// var_dump($data['chapters']);
 
 		// Breadcrumbs
 		$this->breadcrumb->clear();
 		$this->breadcrumb->add_crumb('Home', base_url());
 		$this->breadcrumb->add_crumb($data['book']['name'], base_url('book/index')); 
-		$this->breadcrumb->add_crumb('All Chapters', '#'); 
+		$this->breadcrumb->add_crumb('All Chapters'); 
 		$data['bread'] = $this->breadcrumb->output();
 
 		$this->config->set_item('replacer_embed', array('view'=>$data['book']['name'], 'chapter'=>''));

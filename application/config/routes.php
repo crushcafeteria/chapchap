@@ -38,8 +38,18 @@
 |
 */
 
-$route['default_controller'] = "index";
+$route['default_controller'] = "home";
 $route['404_override'] = '';
+
+$route['document/(:any)'] = 'document/index/$1';
+$route['page/(:any)'] = 'page/index/$1';
+
+$route['api/v1/document/(:any)'] = 'api/v1/api/document/$2';
+
+$route['articles/(:any)'] = 'article/index/$1';
+
+$route['books'] = 'book/index';
+
 
 
 /* End of file routes.php */

@@ -2,21 +2,31 @@
 
 class User_model extends CI_Model {
 
-	function authenticate($data){
+	function login($data){
 
-		$query = $this->db->get_where('users', array('email'=>$data['email'], 'password'=>hash('sha512', $data['password'])));
+		$blackPayDB = $this->load->database('blackpay', true);
 
-		if($query->num_rows() !== 1){
+		$password = hash('sha512', $data['password']);
+
+
+		/*Check auth method*/
+		$data = $blackPayDB->query(
+					"SELECT * FROM users 
+					WHERE email='$data[email]' AND password='$password'"
+				);
+
+		if($data->num_rows()==0 || $data->num_rows()>1){
 			return false;
 		} else {
-			return $query->row_array();
+			return $data->row_array();
 		}
 	}
 
-
-	function createNewUser($data){
-		$data['created_on'] = $this->arena->formatDate();
-		return $this->db->insert('users', array('names'=>$this->arena->titleCase($data['names']), 'gender'=>strtoupper($data['gender']), 'email'=>strtolower($data['email']), 'password'=>hash('sha512', $data['password'])));
+	function find($userID){
+		$blackPayDB = $this->load->database('blackpay', true);
+		$user = $blackPayDB->get_where('users', array('id'=>$userID))->row_array();
+		unset($user['password']);
+		return $user;
 	}
 
 	

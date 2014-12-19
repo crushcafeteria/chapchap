@@ -1,0 +1,16 @@
+1) Overturn sys structure
+	* Chapters
+		* Articles
+2) Finish sudolinks
+3) Finetune image uploading
+4) Port back to Bootstrap 3
+5) I dont kno what I was thinking using BS2
+6) Strengthen help API
+6)jQuery Plugin to load help content from API via AJAX
+7) Help resource mapping according to view directory structure
+8) Awesome theming
+9) Better easier login
+10) User profiles
+11) Admin panel to create other writers
+12) Saving drafts - not visible in prod-ready mode
+13) Build footer

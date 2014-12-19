@@ -51,7 +51,7 @@ $active_record = TRUE;
 $db['default']['hostname'] = 'localhost';
 $db['default']['username'] = 'root';
 $db['default']['password'] = 'root';
-$db['default']['database'] = 'docs';
+$db['default']['database'] = 'bp_docs';
 $db['default']['dbdriver'] = 'mysql';
 $db['default']['dbprefix'] = '';
 $db['default']['pconnect'] = TRUE;
@@ -63,6 +63,12 @@ $db['default']['dbcollat'] = 'utf8_general_ci';
 $db['default']['swap_pre'] = '';
 $db['default']['autoinit'] = TRUE;
 $db['default']['stricton'] = FALSE;
+
+$db['blackpay']['hostname'] = 'localhost';
+$db['blackpay']['username'] = 'root';
+$db['blackpay']['password'] = 'root';
+$db['blackpay']['database'] = 'blackpay';
+$db['blackpay']['dbdriver'] = 'mysql';
 
 
 /* End of file database.php */

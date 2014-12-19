@@ -64,7 +64,7 @@ $autoload['libraries'] = array('session', 'database','template','arena','breadcr
 |	$autoload['helper'] = array('url', 'file');
 */
 
-$autoload['helper'] = array('url','form');
+$autoload['helper'] = array('url','form','lockdown','sudolink');
 
 
 /*
@@ -80,7 +80,7 @@ $autoload['helper'] = array('url','form');
 |
 */
 
-$autoload['config'] = array('vars');
+$autoload['config'] = array('app_config','lockdown_config');
 
 
 /*
